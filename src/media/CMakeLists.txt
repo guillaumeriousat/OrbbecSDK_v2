@@ -20,7 +20,11 @@ target_include_directories(${OB_TARGET_MEDIA} PUBLIC ${OB_PUBLIC_HEADERS_DIR} ${
 
 # dependecies:
 add_subdirectory(${OB_3RDPARTY_DIR}/rosbag rosbag)
-target_link_libraries(${OB_TARGET_MEDIA} PUBLIC rosbag::rosbag)
+get_target_property(_opts rosbag COMPILE_OPTIONS)
+list(REMOVE_ITEM _opts "-Werror")
+list(APPEND _opts "-Wno-error")
+set_target_properties(rosbag PROPERTIES COMPILE_OPTIONS "${_opts}")
+target_link_libraries(${OB_TARGET_MEDIA} PUBLIC rosbag)
 
 add_library(ob::media ALIAS ${OB_TARGET_MEDIA})
 ob_source_group(ob::media)
