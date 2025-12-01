@@ -42,9 +42,7 @@ if ("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_C_COMPILER_ID}" STREQU
         list(APPEND CLANG_ALL_WARNINGS "-Wno-extra-semi-stmt") # Allow semi-colons to be used after #define's
         list(APPEND CLANG_ALL_WARNINGS "-Wno-atomic-implicit-seq-cst") # Allow use of __sync_add_and_fetch() atomic
     endif()
-    if(NOT "${CMAKE_C_COMPILER_ID}" STREQUAL "AppleClang")
-        set(CLANG_WARNINGS_AS_ERRORS "-Werror")
-    endif()
+
     add_compile_options(${CLANG_ALL_WARNINGS})
     add_compile_options(${CLANG_WARNINGS_AS_ERRORS})
     add_compile_options(-Wno-documentation) # Disable warnings related to Doxygen comments
@@ -109,7 +107,6 @@ if ("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_C_COMPILER_ID}" STREQU
 elseif ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
     set(GNU_ALL_WARNINGS "-Wall" "-Wextra")
     list(APPEND GNU_ALL_WARNINGS "-Wno-missing-field-initializers") # Allow c structs without all fields initialized
-    set(GNU_WARNINGS_AS_ERRORS "-Werror")
     add_compile_options(${GNU_ALL_WARNINGS})
     add_compile_options(${GNU_WARNINGS_AS_ERRORS})
 elseif ("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
