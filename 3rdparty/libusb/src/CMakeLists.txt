@@ -35,7 +35,7 @@ elseif(OB_BUILD_MACOS)
     target_link_libraries(libusb_static "-framework CoreFoundation -framework IOKit -framework Security")
 elseif(OB_BUILD_ANDROID)
     target_include_directories(libusb_static PUBLIC ${CMAKE_CURRENT_LIST_DIR}/android)
-else(OB_BUILD_WIN32)
+elseif(OB_BUILD_WIN32)
     target_include_directories(libusb_static PUBLIC ${CMAKE_CURRENT_LIST_DIR}/msvc)
     target_include_directories(libusb_static PUBLIC ${CMAKE_CURRENT_LIST_DIR}/msvc/getopt)
     foreach(
