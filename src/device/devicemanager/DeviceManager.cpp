@@ -306,8 +306,9 @@ bool DeviceManager::isNetDeviceEnumerationEnable() const {
         return std::dynamic_pointer_cast<NetDeviceEnumerator>(enumerator) != nullptr;
     });
     return iter != deviceEnumerators_.end();
-#endif
+#else
     return false;
+#endif
 }
 
 void DeviceManager::startDeviceActivitySync() {
